@@ -14,6 +14,100 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+// Add Team Member
+const addTeamMember = () => {
+    inquirer
+    .prompt([
+        {
+            type: 'checkbox',
+            message: 'Which team member would you like to add next? ',
+            choices: ['Manager', 'Engineer', 'Intern', 'Done building team'],
+            name: 'addTeamInput',
+        },
+    ])
+        .then((response) => {
+            if(response.addTeamInput == 'Manager') {
+                console.log("call manager inquirer function")
+            } else if (response.addTeamInput == 'Engineer') {
+                console.log("call engineer inquirer function")
+            } else if (response.addTeamInput == 'Intern') {
+                console.log("call intern inquirer function")
+            } else {
+                console.log("call done function")
+            }
+});
+}
+
+addTeamMember();
+
+// Gather Manager Information
+const inquireManager = () => {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: 'Enter Manager Name: ',
+            name: 'managerName',
+        },
+        {
+            type: 'number',
+            message: 'Enter Manager ID: ',
+            name: 'managerId',
+        },
+        {
+            type: 'input',
+            message: 'Enter Manager Email: ',
+            name: 'managerEmail',
+        },
+        {
+            type: 'number',
+            message: 'Enter Manager Office Number: ',
+            name: 'managerOffice',
+        },
+    ])
+        .then((response) => {
+            console.log(response.managerName);
+            console.log(response.managerId);
+            console.log(response.managerEmail);
+            console.log(response.managerOffice);
+});
+}
+
+// Gather Engineer Information
+const inquireEngineer = () => {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: 'Enter Engineer Name: ',
+            name: 'engineerName',
+        },
+        {
+            type: 'number',
+            message: 'Enter Engineer ID: ',
+            name: 'engineerId',
+        },
+        {
+            type: 'input',
+            message: 'Enter Engineer Email: ',
+            name: 'engineerEmail',
+        },
+        {
+            type: 'number',
+            message: 'Enter Engineer GitHub Username: ',
+            name: 'engineerGithub',
+        },
+    ])
+        .then((response) => {
+            console.log(response.engineerName);
+            console.log(response.engineerId);
+            console.log(response.engineerEmail);
+            console.log(response.engineerGithub);
+});
+}
+
+       
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
