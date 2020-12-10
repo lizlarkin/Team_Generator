@@ -28,12 +28,16 @@ const addTeamMember = () => {
         .then((response) => {
             if(response.addTeamInput == 'Manager') {
                 console.log("call manager inquirer function")
+                inquireManager();
             } else if (response.addTeamInput == 'Engineer') {
                 console.log("call engineer inquirer function")
+                inquireEngineer();
             } else if (response.addTeamInput == 'Intern') {
                 console.log("call intern inquirer function")
+                inquireIntern();
             } else {
                 console.log("call done function")
+                // render();
             }
 });
 }
@@ -93,7 +97,7 @@ const inquireEngineer = () => {
             name: 'engineerEmail',
         },
         {
-            type: 'number',
+            type: 'input',
             message: 'Enter Engineer GitHub Username: ',
             name: 'engineerGithub',
         },
@@ -106,6 +110,38 @@ const inquireEngineer = () => {
 });
 }
 
+// Gather Intern Information
+const inquireIntern = () => {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: 'Enter Intern Name: ',
+            name: 'internName',
+        },
+        {
+            type: 'number',
+            message: 'Enter Intern ID: ',
+            name: 'internId',
+        },
+        {
+            type: 'input',
+            message: 'Enter Intern Email: ',
+            name: 'internEmail',
+        },
+        {
+            type: 'input',
+            message: 'Enter Intern School: ',
+            name: 'internSchool',
+        },
+    ])
+        .then((response) => {
+            console.log(response.internName);
+            console.log(response.internId);
+            console.log(response.internEmail);
+            console.log(response.internSchool);
+});
+}
        
 
 // After the user has input all employees desired, call the `render` function (required
