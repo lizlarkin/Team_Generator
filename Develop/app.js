@@ -27,16 +27,16 @@ const addTeamMember = () => {
     ])
         .then((response) => {
             if(response.addTeamInput == 'Manager') {
-                console.log("call manager inquirer function")
+                // call manager inquirer function
                 inquireManager();
             } else if (response.addTeamInput == 'Engineer') {
-                console.log("call engineer inquirer function")
+                // call engineer inquirer function
                 inquireEngineer();
             } else if (response.addTeamInput == 'Intern') {
-                console.log("call intern inquirer function")
+                // call intern inquirer function
                 inquireIntern();
             } else {
-                console.log("call done function")
+                // call render function
                 // render();
             }
 });
@@ -45,6 +45,8 @@ const addTeamMember = () => {
 addTeamMember();
 
 // Gather Manager Information
+const manager = []
+
 const inquireManager = () => {
     inquirer
     .prompt([
@@ -70,14 +72,16 @@ const inquireManager = () => {
         },
     ])
         .then((response) => {
-            console.log(response.managerName);
-            console.log(response.managerId);
-            console.log(response.managerEmail);
-            console.log(response.managerOffice);
+            manager.push(response);
+            console.log(manager);
+            addTeamMember();
 });
 }
 
 // Gather Engineer Information
+
+const engineer = []
+
 const inquireEngineer = () => {
     inquirer
     .prompt([
@@ -103,14 +107,15 @@ const inquireEngineer = () => {
         },
     ])
         .then((response) => {
-            console.log(response.engineerName);
-            console.log(response.engineerId);
-            console.log(response.engineerEmail);
-            console.log(response.engineerGithub);
+            engineer.push(response);
+            console.log(engineer);
+            addTeamMember();
 });
 }
 
 // Gather Intern Information
+const intern = []
+
 const inquireIntern = () => {
     inquirer
     .prompt([
@@ -136,10 +141,9 @@ const inquireIntern = () => {
         },
     ])
         .then((response) => {
-            console.log(response.internName);
-            console.log(response.internId);
-            console.log(response.internEmail);
-            console.log(response.internSchool);
+            intern.push(response);
+            console.log(intern);
+            addTeamMember();
 });
 }
        
