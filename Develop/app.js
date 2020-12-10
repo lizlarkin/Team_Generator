@@ -9,10 +9,14 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
 
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+// Employee Array
+const employees = []
 
 // Add Team Member
 const addTeamMember = () => {
@@ -20,7 +24,7 @@ const addTeamMember = () => {
     .prompt([
         {
             type: 'checkbox',
-            message: 'Which team member would you like to add next? ',
+            message: 'Which team member would you like to add? ',
             choices: ['Manager', 'Engineer', 'Intern', 'Done building team'],
             name: 'addTeamInput',
         },
@@ -37,7 +41,7 @@ const addTeamMember = () => {
                 inquireIntern();
             } else {
                 // call render function
-                // render();
+                render(employees);
             }
 });
 }
@@ -53,27 +57,28 @@ const inquireManager = () => {
         {
             type: 'input',
             message: 'Enter Manager Name: ',
-            name: 'managerName',
+            name: 'name',
         },
         {
             type: 'number',
             message: 'Enter Manager ID: ',
-            name: 'managerId',
+            name: 'id',
         },
         {
             type: 'input',
             message: 'Enter Manager Email: ',
-            name: 'managerEmail',
+            name: 'email',
         },
         {
             type: 'number',
             message: 'Enter Manager Office Number: ',
-            name: 'managerOffice',
+            name: 'officeNumber',
         },
     ])
         .then((response) => {
             manager.push(response);
-            console.log(manager);
+            employees.push(manager);
+            console.log(employees)
             addTeamMember();
 });
 }
@@ -88,27 +93,28 @@ const inquireEngineer = () => {
         {
             type: 'input',
             message: 'Enter Engineer Name: ',
-            name: 'engineerName',
+            name: 'name',
         },
         {
             type: 'number',
             message: 'Enter Engineer ID: ',
-            name: 'engineerId',
+            name: 'id',
         },
         {
             type: 'input',
             message: 'Enter Engineer Email: ',
-            name: 'engineerEmail',
+            name: 'email',
         },
         {
             type: 'input',
             message: 'Enter Engineer GitHub Username: ',
-            name: 'engineerGithub',
+            name: 'github',
         },
     ])
         .then((response) => {
             engineer.push(response);
-            console.log(engineer);
+            employees.push(engineer);
+            console.log(employees)
             addTeamMember();
 });
 }
@@ -122,27 +128,28 @@ const inquireIntern = () => {
         {
             type: 'input',
             message: 'Enter Intern Name: ',
-            name: 'internName',
+            name: 'name',
         },
         {
             type: 'number',
             message: 'Enter Intern ID: ',
-            name: 'internId',
+            name: 'id',
         },
         {
             type: 'input',
             message: 'Enter Intern Email: ',
-            name: 'internEmail',
+            name: 'email',
         },
         {
             type: 'input',
             message: 'Enter Intern School: ',
-            name: 'internSchool',
+            name: 'school',
         },
     ])
         .then((response) => {
             intern.push(response);
-            console.log(intern);
+            employees.push(intern);
+            console.log(employees)
             addTeamMember();
 });
 }
