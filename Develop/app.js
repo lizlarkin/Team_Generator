@@ -3,7 +3,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
-const fs = require("fs");
+const fs = require("fs");                                        //VS CODE NOT AUTO FILLING ANYMORE
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -45,6 +45,11 @@ const addTeamMember = () => {
             } else {
                 // call render function
                 render(employees);
+                const html = render(employees)
+                fs.writeFile(__dirname + "/output/team.html", html, (err) => {
+                    if (err) throw err;
+                    console.log("see team.html in output folder")
+                });
             }
 });
 }
@@ -172,10 +177,7 @@ const inquireIntern = () => {
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// fs.writeFile(__dirname + "/outputPath/team.html", html, (err) => {
-//     if (err) throw err;
-//     console.log("team html file created in output folder")
-// });
+
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
