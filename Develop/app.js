@@ -14,8 +14,11 @@ const Employee = require("./lib/Employee");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+// After the user has input all employees desired, call the `render` function (required
+// above) and pass in an array containing all employee objects; the `render` function will
+// generate and return a block of HTML including templated divs for each employee!
 
-// Employee Array
+// Employees Array
 const employees = []
 
 // Add Team Member
@@ -39,7 +42,7 @@ const addTeamMember = () => {
             } else if (response.addTeamInput == 'Intern') {
                 // call intern inquirer function
                 inquireIntern();
-            } else {
+            } else if (response.addTeamInput == 'Done building team') {
                 // call render function
                 render(employees);
             }
@@ -49,7 +52,6 @@ const addTeamMember = () => {
 addTeamMember();
 
 // Gather Manager Information
-const manager = []
 
 const inquireManager = () => {
     inquirer
@@ -76,9 +78,12 @@ const inquireManager = () => {
         },
     ])
         .then((response) => {
-            manager.push(response);
-            employees.push(manager);
-            console.log(employees)
+            const addManager = new Manager(
+                response.name, 
+                response.id, 
+                response.email, 
+                response.officeNumber);
+            employees.push(addManager);   // Is this pushing to global employees array???
             addTeamMember();
 });
 }
@@ -112,9 +117,12 @@ const inquireEngineer = () => {
         },
     ])
         .then((response) => {
-            engineer.push(response);
-            employees.push(engineer);
-            console.log(employees)
+            const addEngineer = new Engineer(
+                response.name, 
+                response.id, 
+                response.email, 
+                response.github);
+            employees.push(addEngineer);   // Is this pushing to global employees array???
             addTeamMember();
 });
 }
@@ -147,18 +155,20 @@ const inquireIntern = () => {
             name: 'school',
         },
     ])
-        .then((response) => {
-            intern.push(response);
-            employees.push(intern);
-            console.log(employees)
-            addTeamMember();
+    .then((response) => {
+        const addIntern = new Intern(
+            response.name, 
+            response.id, 
+            response.email, 
+            response.school);
+        employees.push(addIntern);   // Is this pushing to global employees array???
+        addTeamMember();
 });
 }
        
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
