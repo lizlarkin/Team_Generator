@@ -43,13 +43,11 @@ const addTeamMember = () => {
                 // call intern inquirer function
                 inquireIntern();
             } else {
-                // call render function
-                render(employees);
-                const html = render(employees)
-                fs.writeFile(__dirname + "/output/team.html", html, (err) => {
-                    if (err) throw err;
-                    console.log("see team.html in output folder")
-                });
+                if(!fs.existsSync(OUTPUT_DIR)){
+                    fs.mkdirSync(OUTPUT_DIR)
+                }
+                
+                fs.writeFileSync(outputPath, render(employees), "utf-8");
             }
 });
 }
@@ -95,8 +93,6 @@ const inquireManager = () => {
 
 // Gather Engineer Information
 
-const engineer = []
-
 const inquireEngineer = () => {
     inquirer
     .prompt([
@@ -133,8 +129,6 @@ const inquireEngineer = () => {
 }
 
 // Gather Intern Information
-
-const intern = []
 
 const inquireIntern = () => {
     inquirer
