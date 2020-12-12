@@ -1,0 +1,26 @@
+.col-12.jumbotron.mb-3.team-heading {
+    color: white;
+    font-weight: bold;
+    background-color: #60a3bc; 
+}
+
+h2 {
+    color: white;
+}
+
+.card.employee-card.w-100 {
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.card.employee-card.w-50 {
+    margin: auto;
+    float: left;
+    margin-bottom: 20px
+}
+
+.card-header {
+    color: white;
+    font-weight: bold;
+    background-color: #3c6382;
+}
